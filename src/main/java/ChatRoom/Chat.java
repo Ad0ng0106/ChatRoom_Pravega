@@ -127,7 +127,6 @@ public class Chat {
     }
 
 
-
     public void startChat(){
 
         System.out.print("Chat members: you(" + selfName + ")");

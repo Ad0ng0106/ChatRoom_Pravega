@@ -33,7 +33,6 @@ public class FileConverter {
     public static String getFileName(String line){
         return line.substring(line.lastIndexOf("\\")+1);
     }
-
     public static byte[] str2bytes(String str) {
         return str.getBytes();
     }

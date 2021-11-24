@@ -10,7 +10,6 @@ import io.pravega.client.stream.impl.JavaSerializer;
 
 import java.net.URI;
 
-
 public class Writer {
 
     public static EventStreamWriter<String> getWriter(String url, String scope, String stream) throws Exception {

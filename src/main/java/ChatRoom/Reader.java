@@ -10,7 +10,6 @@ import io.pravega.client.stream.impl.JavaSerializer;
 
 import java.net.URI;
 
-
 public class Reader {
 
     public static ReaderGroupManager createReaderGroup(String url, String scope, String stream, String groupName) throws Exception {
