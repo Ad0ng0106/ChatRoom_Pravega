@@ -7,6 +7,7 @@ import io.pravega.client.stream.EventStreamWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class Chat {
     String selfName;
     String[] peerNames;
