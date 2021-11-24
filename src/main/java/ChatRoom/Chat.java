@@ -126,7 +126,6 @@ public class Chat {
         fileReader = Reader.createBytesReader(controller, scope, selfName + "file", selfName + "file");
     }
 
-
     public void startChat(){
 
         System.out.print("Chat members: you(" + selfName + ")");

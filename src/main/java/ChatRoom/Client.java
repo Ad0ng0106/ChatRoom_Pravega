@@ -2,7 +2,6 @@ package ChatRoom;
 
 import java.util.Arrays;
 
-
 public class Client {
 
     /**

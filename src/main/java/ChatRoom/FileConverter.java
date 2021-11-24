@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-
 public class FileConverter {
     public static byte[] f2bytes(String dir){
         File file = new File(dir);
