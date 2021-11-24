@@ -12,6 +12,7 @@ import java.net.URI;
 
 
 public class Writer {
+
     public static EventStreamWriter<String> getWriter(String url, String scope, String stream) throws Exception {
         URI controllerURI = new URI(url);
         ClientConfig clientConfig = ClientConfig.builder().controllerURI(controllerURI).build();
@@ -20,6 +21,7 @@ public class Writer {
         EventStreamWriter<String> eventWriter = clientFactory.createEventWriter(stream, new JavaSerializer<>(), writerConfig);
         return eventWriter;
     }
+
     public static EventStreamWriter<byte[]> getBytesWriter(String url, String scope, String stream) throws Exception {
         URI controllerURI = new URI(url);
         ClientConfig clientConfig = ClientConfig.builder().controllerURI(controllerURI).build();

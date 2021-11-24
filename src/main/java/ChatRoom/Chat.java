@@ -7,7 +7,12 @@ import io.pravega.client.stream.EventStreamWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
+/**
+ * The chat room is implemented with two threads, one for receiving messages and the other for sending messages.
+ * Both private chat and group chat use two streams. One for sending and receiving messages and the other for sending and receiving files.
+ * Messages are written into stream and read from stream directly by the string stream writer and string stream reader.
+ * Files are converted to byte[] and sent and received with byte[] stream writer and byte[] stream reader.
+ */
 public class Chat {
     String selfName;
     String[] peerNames;
@@ -33,6 +38,8 @@ public class Chat {
 
                 String line = scanner.nextLine();
 
+
+//                If a file is to be uploaded, the byte[] writer writes the file itself and then writes a converted string indicating the file name.
                 if (line.startsWith("upload@")){
                     byte[] bytes = FileConverter.f2bytes(line.substring(7));
                     if (bytes != null) {
@@ -42,9 +49,13 @@ public class Chat {
                         fileWriter.writeEvent(FileConverter.str2bytes(selfName + ": " + fileName));
                     }
                 }
+
+//                send message
                 else{
                     String message = selfName + ": " + line;
                     writer.writeEvent(message);
+
+//                    Chat ends if "bye" is written
                     if (message.equals(selfName + ": bye")) {
                         writer.close();
                         fileWriter.close();
@@ -74,6 +85,7 @@ public class Chat {
                     System.out.print("You(" + selfName + "): ");
                 }
 
+//                If a file is detected, the byte[] reader first collects the file itself and then collects the byte[] file name.
                 byte[] fileEvent = fileReader.readNextEvent(1000).getEvent();
                 if (fileEvent != null){
                     byte[] fileNameBytes = null;
@@ -114,6 +126,8 @@ public class Chat {
         fileReader = Reader.createBytesReader(controller, scope, selfName + "file", selfName + "file");
     }
 
+
+
     public void startChat(){
 
         System.out.print("Chat members: you(" + selfName + ")");
@@ -142,9 +156,9 @@ public class Chat {
     }
 
 
-
-
-
+    /**
+     * Name the string by sorting the name of all the chat members and put them together as a whole string.
+     */
     private String getStreamName(String[] names){
         String[] namesNew = new String[names.length + 1];
         for (int i = 0; i < names.length; i ++){ namesNew[i] = names[i]; }

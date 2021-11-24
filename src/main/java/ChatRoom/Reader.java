@@ -32,7 +32,6 @@ public class Reader {
         return reader;
     }
 
-
     public static EventStreamReader<byte[]> createBytesReader(String url, String scope, String readerName, String groupName) throws Exception {
         URI controllerURI = new URI(url);
         ClientConfig clientConfig = ClientConfig.builder().controllerURI(controllerURI).build();
@@ -42,6 +41,9 @@ public class Reader {
         return reader;
     }
 
+    /**
+     * Read the previous chat history and print them according to different speakers.
+     */
     public static void readHistoryData(EventStreamReader<String> reader, String selfName) {
         while (true) {
             String event = reader.readNextEvent(1000).getEvent();

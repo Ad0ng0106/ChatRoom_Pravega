@@ -27,6 +27,9 @@ public class FileConverter {
         }
     }
 
+    /**
+     * remove the "upload@" in the line message.
+     */
     public static String getFileName(String line){
         return line.substring(line.lastIndexOf("\\")+1);
     }
