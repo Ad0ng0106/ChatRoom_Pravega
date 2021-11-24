@@ -13,6 +13,7 @@ public class Client {
         for (int i = 0; i < peerNames.length; i ++){ peerNames[i] = peerNames[i].trim(); }
 
 //        The files received by a user are stored in directory <folder>\<user's name>\
+
         String folder = "C:\\Users\\lenovo\\Desktop\\";
         Chat chat = new Chat(selfName, peerNames, folder);
         chat.startChat();
